@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đếm ngược 22/12/2026</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;padding:20px;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  font-family:Arial,Helvetica,sans-serif;background:#fff;color:#0756a6;
+}
+.card{
+  width:min(900px,100%);text-align:center;padding:34px 20px 28px;
+  border:1px solid #d8e9f8;border-radius:24px;background:#fff;
+  box-shadow:0 12px 38px rgba(7,86,166,.12);
+}
+h1{margin:0 0 28px;font-size:clamp(24px,5vw,42px);line-height:1.2;color:#0756a6}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.unit{padding:20px 7px 16px;background:#f5faff;border:2px solid #d8eafb;border-radius:17px}
+.number{font-size:clamp(40px,9vw,78px);font-weight:800;line-height:1;color:#0864bd}
+.label{margin-top:10px;font-size:14px;font-weight:700;letter-spacing:1.5px;color:#3978ad}
+@media(max-width:520px){
+ body{padding:12px}
+ .card{padding:28px 10px 24px;border-radius:20px}
+ .countdown{gap:6px}
+ .unit{padding:16px 3px 13px;border-radius:13px}
+ .label{font-size:10px;letter-spacing:.7px}
+}
+</style>
+</head>
+<body>
+<main class="card">
+<h1>ĐẾM NGƯỢC ĐẾN NGÀY<br>22/12/2026</h1>
+<section class="countdown" aria-label="Đồng hồ đếm ngược">
+<div class="unit"><div class="number" id="days">0</div><div class="label">NGÀY</div></div>
+<div class="unit"><div class="number" id="hours">00</div><div class="label">GIỜ</div></div>
+<div class="unit"><div class="number" id="minutes">00</div><div class="label">PHÚT</div></div>
+<div class="unit"><div class="number" id="seconds">00</div><div class="label">GIÂY</div></div>
+</section>
+</main>
+<script>
+const target=Date.UTC(2026,11,22,0,0,0);
+function update(){
+ const d=Math.max(0,target-Date.now()),s=Math.floor(d/1000);
+ document.getElementById('days').textContent=Math.floor(s/86400);
+ document.getElementById('hours').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');
+ document.getElementById('minutes').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+ document.getElementById('seconds').textContent=String(s%60).padStart(2,'0');
+}
+update(); setInterval(update,250);
+</script>
+</body>
+</html>
